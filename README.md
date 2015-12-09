@@ -12,26 +12,30 @@ Please visit and like [harviacode.com](http://harviacode.com) for more info and 
 
 ## How to use this CRUD Generator : ##
 
-1. Simply put 'harviacode' folder, 'asset' folder and .htaccess file into your codeigniter root folder.
-2. Change database configuration in harviacode/lib/config.php.
-3. Open http://localhost/codeigniter/harviacode.
-4. Write your table name, choose codeigniter version and push generate button.
-5. That steps will generate this following files :
-
-* ../application/models/tablename_model.php
-* ../application/controllers/tablename.php
-* ../application/views/tablename_list.php
-* ../application/views/tablename_form.php
-* ../application/views/tablename_read.php
-* ../application/config/pagination.php
+1. Simply put 'harviacode' folder, 'asset' folder and .htaccess file into your project root folder.
+2. Open http://localhost/yourprojectname/harviacode.
+3. Select table and push generate button.
 
 ## Important : ##
 
 * On application/config/autoload.php, load database library, session library and url helper.
-* On application/config/config.php, set $config['index_page'] = '', $config['url_suffix'] = '.html' and $config['encryption_key'] = 'randomstring'
+* On application/config/config.php, set $config['base_url'] = 'http://localhost/yourprojectname', $config['index_page'] = '', $config['url_suffix'] = '.html' and $config['encryption_key'] = 'randomstring'
 * On application/config/database.php, set hostname, username, password and database
 
+## Thanks for Support Me ##
+Buy me a cup of coffee.. paypal : hariprasetyo0212@gmail.com
+
 ## Update ##
+V.1.3 - 09 December 2015
+
+* Zero Config for database connection
+* Fix bug searching
+* Fix field name label
+* Add select table from database
+* Add generate all table
+* Select target folder from setting menu
+* Remove support for Codeigniter 2
+
 V.1.2 - 25 June 2015
 
 * Add custom target folder

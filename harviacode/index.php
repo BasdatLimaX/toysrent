@@ -1,179 +1,96 @@
-<!--
-Author : Hari Prasetyo
-Website : harviacode.com
-Create Date : 08/05/2015
-
-You may edit this code, but please do not remove original information. Thanks :D
--->
 <?php
-$table_error = '';
-$model_res = '';
-$controller_res = '';
-$list_res = '';
-$read_res = '';
-$form_res = '';
-$page_res = '';
-$excel_res = '';
-$word_res = '';
-
-if (isset($_POST['table'])) {
-    // include connection 
-    require 'lib/config.php';
-
-    $connection = mysql_connect($hostname, $username, $password);
-    $select_database = mysql_select_db($database);
-
-    if (!$select_database) {
-        die('Pleace check database setting on lib/config.php');
-    }
-
-    // get table name
-    $table = strtolower(trim($_POST['table']));
-    $controller = strtolower(trim($_POST['controller']));
-    $model = strtolower(trim($_POST['model']));
-    $versici = $_POST['versici'];
-    $jenistabel = $_POST['jenistabel'];
-    $paginationConfig = isset($_POST['paginationConfig']) ? $_POST['paginationConfig'] : '';
-    $excel = isset($_POST['excel']) ? $_POST['excel'] : '';
-    $word = isset($_POST['word']) ? $_POST['word'] : '';
-
-    // cek table in database
-    if (mysql_num_rows(mysql_query("SHOW TABLES LIKE '" . $table . "'")) <> 1) {
-        // show error
-        $table_error = "<p>Table \"" . $table . "\" does not exist</p>";
-    } else {
-        // setting 
-        $model = $model <> '' ? $model : $table . "_model";
-        $controller = $controller <> '' ? $controller : $table;
-        $html = $table . "_html";
-        $list = $table . "_list";
-        $read = $table . "_read";
-        $form = $table . "_form";
-
-        //filename
-        if ($versici == 2) {
-            $model_file = $model . ".php";
-            $controller_file = $controller . ".php";
-        } else {
-            $model_file = ucfirst($model) . ".php";
-            $controller_file = ucfirst($controller) . ".php";
-        }
-        $html_file = $html . ".php";
-        $list_file = $list . ".php";
-        $read_file = $read . ".php";
-        $form_file = $form . ".php";
-
-        require 'lib/createModel.php';
-        require 'lib/createController.php';
-        require 'lib/createViewForm.php';
-        require 'lib/createViewRead.php';
-
-        if ($jenistabel == 'regtable') {
-            require 'lib/createViewList.php';
-        } else {
-            require 'lib/createViewListDatatables.php';
-        }
-        
-        if ($paginationConfig == 'create') {
-            require 'lib/createConfigPagination.php';
-        }
-
-        if ($excel == 'create') {
-            require 'lib/createExportExcelHelper.php';
-        }
-        
-        if ($word == 'create') {
-            require 'lib/createViewListHtml.php';
-        }
-    }
-}
+error_reporting(0);
+require_once 'core/harviacode.php';
+require_once 'core/helper.php';
+require_once 'core/process.php';
 ?>
 <!doctype html>
 <html>
     <head>
-        <title>Codeigniter CRUD Generator</title>
-        <link rel="stylesheet" href="lib/bootstrap.min.css"/>
+        <title>Harviacode Codeigniter CRUD Generator</title>
+        <link rel="stylesheet" href="core/bootstrap.min.css"/>
         <style>
             body{
                 padding: 15px;
             }
-            p{
-                margin-bottom: 5px;
-                margin-top: 10px;
-            }
         </style>
     </head>
     <body>
-        <div class="row" style="margin-top: 10px">
+        <div class="row">
             <div class="col-md-3">
-                <form action="index.php" method="post">
+                <form action="index.php" method="POST">
+
                     <div class="form-group">
-                        <input onkeyup="setname()" id="table" type="text" name="table" value="<?php echo isset($_POST['table']) ? $_POST['table'] : '' ?>" class="form-control" placeholder="Input Table Name" />
+                        <label>Select Table - <a href="<?php echo $_SERVER['PHP_SELF'] ?>">Refresh</a></label>
+                        <select id="table_name" name="table_name" class="form-control" onchange="setname()">
+                            <option value="">Please Select</option>
+                            <?php
+                            $table_list = $hc->table_list();
+                            $table_list_selected = isset($_POST['table_name']) ? $_POST['table_name'] : '';
+                            foreach ($table_list as $table) {
+                                ?>
+                                <option value="<?php echo $table['table_name'] ?>" <?php echo $table_list_selected == $table['table_name'] ? 'selected="selected"' : ''; ?>><?php echo $table['table_name'] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
                     </div>
-                    <?php $def_versi = isset($_POST['versici']) ? $_POST['versici'] : '2'; ?>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
-                                <label>
-                                    <input type="radio" name="versici" id="2" value="2" <?php echo $def_versi == '2' ? 'checked' : ''; ?>>
-                                    Codeigniter 2
-                                </label>
-                            </div>                            
-                        </div>
-                        <div class="col-md-6">
-                            <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
-                                <label>
-                                    <input type="radio" name="versici" id="3" value="3" <?php echo $def_versi == '3' ? 'checked' : ''; ?>>
-                                    Codeigniter 3
-                                </label>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <?php $jenis_tabel = isset($_POST['jenis_tabel']) ? $_POST['jenis_tabel'] : 'reguler_table'; ?>
+                            <div class="col-md-6">
+                                <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
+                                    <label>
+                                        <input type="radio" name="jenis_tabel" value="reguler_table" <?php echo $jenis_tabel == 'reguler_table' ? 'checked' : ''; ?>>
+                                        Reguler Table
+                                    </label>
+                                </div>                            
+                            </div>
+                            <div class="col-md-6">
+                                <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
+                                    <label>
+                                        <input type="radio" name="jenis_tabel" value="datatables" <?php echo $jenis_tabel == 'datatables' ? 'checked' : ''; ?>>
+                                        Datatables
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <hr style="margin-bottom: 5px; margin-top: 5px">
-                    <?php $def_jenistable = isset($_POST['jenistabel']) ? $_POST['jenistabel'] : 'regtable'; ?>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
-                                <label>
-                                    <input type="radio" name="jenistabel" id="regtable" value="regtable" <?php echo $def_jenistable == 'regtable' ? 'checked' : ''; ?>>
-                                    Reguler Table
-                                </label>
-                            </div>                            
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <?php $export_excel = isset($_POST['export_excel']) ? $_POST['export_excel'] : ''; ?>
+                            <label>
+                                <input type="checkbox" name="export_excel" value="1" <?php echo $export_excel == '1' ? 'checked' : '' ?>>
+                                Export Excel
+                            </label>
                         </div>
-                        <div class="col-md-6">
-                            <div class="radio" style="margin-bottom: 0px; margin-top: 0px">
-                                <label>
-                                    <input type="radio" name="jenistabel" id="datatables" value="datatables" <?php echo $def_jenistable == 'datatables' ? 'checked' : ''; ?>>
-                                    Datatables
-                                </label>
-                            </div>
+                    </div>    
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <?php $export_word = isset($_POST['export_word']) ? $_POST['export_word'] : ''; ?>
+                            <label>
+                                <input type="checkbox" name="export_word" value="1" <?php echo $export_word == '1' ? 'checked' : '' ?>>
+                                Export Word
+                            </label>
                         </div>
-                    </div>
-                    <hr style="margin-bottom: 5px; margin-top: 5px">
-                    <div class="checkbox">
-                        <?php $excel = isset($_POST['excel']) ? $_POST['excel'] : ''; ?>
-                        <label>
-                            <input type="checkbox" name="excel" value="create" <?php echo $excel == 'create' ? 'checked' : '' ?>>
-                            Export Excel
-                        </label>
-                    </div>
-                    <hr style="margin-bottom: 5px; margin-top: 5px">
-                    <div class="checkbox">
-                        <?php $word = isset($_POST['word']) ? $_POST['word'] : ''; ?>
-                        <label>
-                            <input type="checkbox" name="word" value="create" <?php echo $word == 'create' ? 'checked' : '' ?>>
-                            Export Word
-                        </label>
-                    </div>
-                    <hr style="margin-bottom: 5px; margin-top: 5px">
-                    <div class="checkbox">
-                        <?php $def_page = isset($_POST['paginationConfig']) ? $_POST['paginationConfig'] : ''; ?>
-                        <label>
-                            <input type="checkbox" name="paginationConfig" value="create" <?php echo $def_page == 'create' ? 'checked' : '' ?>>
-                            Create ../application/config/pagination.php
-                        </label>
-                    </div>
-                    <hr style="margin-bottom: 10px; margin-top: 10px">
+                    </div>    
+
+                    <!--                    <div class="form-group">
+                                            <div class="checkbox  <?php // echo file_exists('../application/third_party/mpdf/mpdf.php') ? '' : 'disabled';   ?>">
+                    <?php // $export_pdf = isset($_POST['export_pdf']) ? $_POST['export_pdf'] : ''; ?>
+                                                <label>
+                                                    <input type="checkbox" name="export_pdf" value="1" <?php // echo $export_pdf == '1' ? 'checked' : ''   ?>
+                    <?php // echo file_exists('../application/third_party/mpdf/mpdf.php') ? '' : 'disabled'; ?>>
+                                                    Export PDF
+                                                </label>
+                    <?php // echo file_exists('../application/third_party/mpdf/mpdf.php') ? '' : '<small class="text-danger">mpdf required, download <a href="http://harviacode.com">here</a></small>'; ?>
+                                            </div>
+                                        </div>-->
+
+
                     <div class="form-group">
                         <label>Custom Controller Name</label>
                         <input type="text" id="controller" name="controller" value="<?php echo isset($_POST['controller']) ? $_POST['controller'] : '' ?>" class="form-control" placeholder="Controller Name" />
@@ -183,21 +100,20 @@ if (isset($_POST['table'])) {
                         <input type="text" id="model" name="model" value="<?php echo isset($_POST['model']) ? $_POST['model'] : '' ?>" class="form-control" placeholder="Controller Name" />
                     </div>
                     <input type="submit" value="Generate" name="generate" class="btn btn-primary" onclick="javascript: return confirm('This will overwrite the existing files. Continue ?')" />
+                    <input type="submit" value="Generate All" name="generateall" class="btn btn-danger" onclick="javascript: return confirm('WARNING !! This will generate code for ALL TABLE and overwrite the existing files\
+                    \nPlease double check before continue. Continue ?')" />
+                    <a href="core/setting.php" class="btn btn-default">Setting</a>
                 </form>
+                <br>
+
                 <?php
-                echo $table_error;
-                echo $model_res;
-                echo $controller_res;
-                echo $list_res;
-                echo $read_res;
-                echo $form_res;
-                echo $page_res;
-                echo $excel_res;
-                echo $word_res;
+                foreach ($hasil as $h) {
+                    echo '<p>' . $h . '</p>';
+                }
                 ?>
             </div>
             <div class="col-md-9">
-                <h3 style="margin-top: 0px">Codeigniter CRUD Generator 1.2 by <a target="_blank" href="http://harviacode.com">harviacode.com</a></h3>
+                <h3 style="margin-top: 0px">Codeigniter CRUD Generator 1.3 by <a target="_blank" href="http://harviacode.com">harviacode.com</a></h3>
                 <p><strong>About :</strong></p>
                 <p>
                     Codeigniter CRUD Generator is a simple tool to auto generate model, controller and view from your table. This tool will boost your
@@ -210,29 +126,49 @@ if (isset($_POST['table'])) {
                 </p>
                 <p><strong>How to use this CRUD Generator :</strong></p>
                 <ul>
-                    <li>Simply put 'harviacode' folder, 'asset' folder and .htaccess file into your codeigniter root folder.</li>
-                    <li>Change database configuration in harviacode/lib/config.php.</li>
-                    <li>Open http://localhost/codeigniter/harviacode.</li>
-                    <li>Write your table name, choose codeigniter version and push generate button.</li>
-                    <li>That steps will generate this following files :
-                        <ul>
-                            <li>../application/models/tablename_model.php</li>
-                            <li>../application/controllers/tablename.php</li>
-                            <li>../application/views/tablename_list.php</li>
-                            <li>../application/views/tablename_form.php</li>
-                            <li>../application/views/tablename_read.php</li>
-                            <li>../application/config/pagination.php</li>
-                        </ul>
-                    </li>
+                    <li>Simply put 'harviacode' folder, 'asset' folder and .htaccess file into your project root folder.</li>
+                    <li>Open http://localhost/yourprojectname/harviacode.</li>
+                    <li>Select table and push generate button.</li>
                 </ul>
                 <p><strong>Important :</strong></p>
                 <ul>
-                    <li>On application/config/autoload.php, load <b>database library</b>, <b>session library</b> and <b>url helper</b>.</li>
-                    <li>On application/config/config.php, set <b>$config['index_page'] = ''</b>, <b>$config['url_suffix'] = '.html'</b> and <b>$config['encryption_key'] = 'randomstring'</b>.</li>
-                    <li>On application/config/database.php, set <b>hostname</b>, <b>username</b>, <b>password</b> and <b>database</b>.</li>
+                    <li>On application/config/autoload.php, load database library, session library and url helper</li>
+                    <li>On application/config/config.php, set :</b>.
+                        <ul>
+                            <li>$config['base_url'] = 'http://localhost/yourprojectname'</li>
+                            <li>$config['index_page'] = ''</li>
+                            <li>$config['url_suffix'] = '.html'</li>
+                            <li>$config['encryption_key'] = 'randomstring'</li>
+
+                        </ul>
+
+                    </li>
+                    <li>On application/config/database.php, set hostname, username, password and database.</li>
                 </ul>
+                <br>
+                <p><strong>Thanks for Support Me</strong></p>
+                <p>Buy me a cup of coffee :)</p>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" name="hosted_button_id" value="52D85QFXT57KN">
+                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                <br>
                 <p><strong>Update</strong></p>
+
                 <ul>
+                    <li>V.1.3 - 09 December 2015
+                        <ul>
+                            <li>Zero Config for database connection</li>
+                            <li>Fix bug searching</li>
+                            <li>Fix field name label</li>
+                            <li>Add select table from database</li>
+                            <li>Add generate all table</li>
+                            <li>Select target folder from setting menu</li>
+                            <li>Remove support for Codeigniter 2</li>
+                        </ul>
+                    </li>
                     <li>V.1.2 - 25 June 2015
                         <ul>
                             <li>Add custom target folder</li>
@@ -252,13 +188,20 @@ if (isset($_POST['table'])) {
             </div>
         </div>
         <script type="text/javascript">
+            function capitalize(s) {
+                return s && s[0].toUpperCase() + s.slice(1);
+            }
+
             function setname() {
-                var table = document.getElementById('table').value.toLowerCase();
-                document.getElementById('controller').value = table;
-                document.getElementById('model').value = table + '_model';
+                var table_name = document.getElementById('table_name').value.toLowerCase();
+                if (table_name != '') {
+                    document.getElementById('controller').value = capitalize(table_name);
+                    document.getElementById('model').value = capitalize(table_name) + '_model';
+                } else {
+                    document.getElementById('controller').value = '';
+                    document.getElementById('model').value = '';
+                }
             }
         </script>
     </body>
 </html>
-
-
