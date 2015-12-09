@@ -1,6 +1,6 @@
 # Codeigniter CRUD Generator 1.2 by [harviacode.com](http://harviacode.com)#
 
-![crudgenerator.png](https://bitbucket.org/repo/587Kzp/images/1234663838-crudgenerator.png)
+![harviacode crud generator 1 3.jpg](https://bitbucket.org/repo/587Kzp/images/2127696049-harviacode%20crud%20generator%201%203.jpg)
 
 ## About : ##
 
