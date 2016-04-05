@@ -113,7 +113,7 @@ require_once 'core/process.php';
                 ?>
             </div>
             <div class="col-md-9">
-                <h3 style="margin-top: 0px">Codeigniter CRUD Generator 1.3 by <a target="_blank" href="http://harviacode.com">harviacode.com</a></h3>
+                <h3 style="margin-top: 0px">Codeigniter CRUD Generator 1.3.1 by <a target="_blank" href="http://harviacode.com">harviacode.com</a></h3>
                 <p><strong>About :</strong></p>
                 <p>
                     Codeigniter CRUD Generator is a simple tool to auto generate model, controller and view from your table. This tool will boost your
@@ -158,6 +158,11 @@ require_once 'core/process.php';
                 <p><strong>Update</strong></p>
 
                 <ul>
+                    <li>V.1.3.1 - 05 April 2016
+                        <ul>
+                            <li>Put view files into folder</li>
+                        </ul>
+                    </li>
                     <li>V.1.3 - 09 December 2015
                         <ul>
                             <li>Zero Config for database connection</li>

@@ -44,7 +44,7 @@ $string .= "\n\n    public function index()
             'total_rows' => \$config['total_rows'],
             'start' => \$start,
         );
-        \$this->load->view('$v_list', \$data);
+        \$this->load->view('$c_url/$v_list', \$data);
     }";
 
 } else {
@@ -57,7 +57,7 @@ $string .="\n\n    public function index()
             '" . $c_url . "_data' => \$$c_url
         );
 
-        \$this->load->view('$v_list', \$data);
+        \$this->load->view('$c_url/$v_list', \$data);
     }";
 
 }
@@ -71,7 +71,7 @@ foreach ($all as $row) {
     $string .= "\n\t\t'" . $row['column_name'] . "' => \$row->" . $row['column_name'] . ",";
 }
 $string .= "\n\t    );
-            \$this->load->view('$v_read', \$data);
+            \$this->load->view('$c_url/$v_read', \$data);
         } else {
             \$this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('$c_url'));
@@ -87,7 +87,7 @@ foreach ($all as $row) {
     $string .= "\n\t    '" . $row['column_name'] . "' => set_value('" . $row['column_name'] . "'),";
 }
 $string .= "\n\t);
-        \$this->load->view('$v_form', \$data);
+        \$this->load->view('$c_url/$v_form', \$data);
     }
     
     public function create_action() 
@@ -121,7 +121,7 @@ foreach ($all as $row) {
     $string .= "\n\t\t'" . $row['column_name'] . "' => set_value('" . $row['column_name'] . "', \$row->". $row['column_name']."),";
 }
 $string .= "\n\t    );
-            \$this->load->view('$v_form', \$data);
+            \$this->load->view('$c_url/$v_form', \$data);
         } else {
             \$this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('$c_url'));
@@ -228,7 +228,7 @@ if ($export_word == '1') {
             'start' => 0
         );
         
-        \$this->load->view('" . $v_doc . "',\$data);
+        \$this->load->view('" . $c_url ."/". $v_doc . "',\$data);
     }";
 }
 
@@ -241,7 +241,7 @@ if ($export_pdf == '1') {
         );
         
         ini_set('memory_limit', '32M');
-        \$html = \$this->load->view('" . $v_pdf . "', \$data, true);
+        \$html = \$this->load->view('" . $c_url ."/". $v_pdf . "', \$data, true);
         \$this->load->library('pdf');
         \$pdf = \$this->pdf->load();
         \$pdf->WriteHTML(\$html);

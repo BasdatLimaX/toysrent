@@ -36,6 +36,6 @@ $string .= "\n\t</form>
     </body>
 </html>";
 
-$hasil_view_form = createFile($string, $target."views/" . $v_form_file);
+$hasil_view_form = createFile($string, $target."views/" . $c_url . "/" . $v_form_file);
 
 ?>

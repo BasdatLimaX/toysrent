@@ -24,6 +24,6 @@ $string .= "\n\t</table>
 
 
 
-$hasil_view_read = createFile($string, $target."views/" . $v_read_file);
+$hasil_view_read = createFile($string, $target."views/" . $c_url . "/" . $v_read_file);
 
 ?>

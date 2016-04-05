@@ -1,4 +1,4 @@
-# Codeigniter CRUD Generator 1.3 by [harviacode.com](http://harviacode.com)#
+# Codeigniter CRUD Generator 1.3.1 by [harviacode.com](http://harviacode.com)#
 
 ![harviacode crud generator 1 3.jpg](https://bitbucket.org/repo/587Kzp/images/2127696049-harviacode%20crud%20generator%201%203.jpg)
 
@@ -26,6 +26,11 @@ Please visit and like [harviacode.com](http://harviacode.com) for more info and 
 Buy me a cup of coffee.. paypal : hariprasetyo0212@gmail.com
 
 ## Update ##
+V.1.3.1 - 05 April 2016
+
+* Put view files into folder
+
+
 V.1.3 - 09 December 2015
 
 * Zero Config for database connection
