@@ -20,6 +20,10 @@ Please visit and like [harviacode.com](http://harviacode.com) for more info and 
 2. Open http://localhost/yourprojectname/harviacode.
 3. Select table and push generate button.
 
+OR 
+
+watch video on https://youtu.be/OHZ7hhRLUZM
+
 ## FAQ : ##
 
 * Select table show no data. Make sure you have correct database configuration on application/config/database.php and load database library on autoload.
