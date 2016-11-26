@@ -11,8 +11,13 @@ class " . $c . " extends CI_Controller
     {
         parent::__construct();
         \$this->load->model('$m');
-        \$this->load->library('form_validation');
-        \$this->load->library('datatables');
+        \$this->load->library('form_validation');";
+
+if ($jenis_tabel <> 'reguler_table') {
+    $string .= "        \$this->load->library('datatables');";
+}
+        
+$string .= "
     }";
 
 if ($jenis_tabel == 'reguler_table') {
