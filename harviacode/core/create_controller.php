@@ -14,7 +14,7 @@ class " . $c . " extends CI_Controller
         \$this->load->library('form_validation');";
 
 if ($jenis_tabel <> 'reguler_table') {
-    $string .= "        \$this->load->library('datatables');";
+    $string .= "        \n\t\$this->load->library('datatables');";
 }
         
 $string .= "
