@@ -132,7 +132,12 @@ if (isset($_POST['generateall']))
         include 'core/create_config_pagination.php';
         include 'core/create_controller.php';
         include 'core/create_model.php';
-        $jenis_tabel == 'reguler_table' ? include 'core/create_view_list.php' : include 'core/create_view_list_datatables.php';
+        if ($jenis_tabel == 'reguler_table') {
+            include 'core/create_view_list.php';
+        } else {
+            include 'core/create_view_list_datatables.php';
+            include 'core/create_libraries_datatables.php';
+        }
         include 'core/create_view_form.php';
         include 'core/create_view_read.php';
 
