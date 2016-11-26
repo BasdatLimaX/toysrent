@@ -63,6 +63,7 @@ $string .= "\n\t\t    <th width=\"200px\">Action</th>
                 </tr>
             </thead>";
 
+$column_non_pk = array();
 foreach ($non_pk as $row) {
     $column_non_pk[] .= "{\"data\": \"".$row['column_name']."\"}";
 }

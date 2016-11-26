@@ -19,6 +19,7 @@ class " . $m . " extends CI_Model
 
 if ($jenis_tabel <> 'reguler_table') {
     
+$column_all = array();
 foreach ($all as $row) {
     $column_all[] = $row['column_name'];
 }
