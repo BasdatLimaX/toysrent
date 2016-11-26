@@ -20,7 +20,7 @@ class Harviacode
         $string = str_replace("defined('BASEPATH') OR exit('No direct script access allowed');", "", $subject);
         
         $con = 'core/connection.php';
-        $create = fopen($con, "w") or die("Unable to open core/connection.php!");
+        $create = fopen($con, "w") or die("Change your permision folder for application and harviacode folder to 777");
         fwrite($create, $string);
         fclose($create);
         

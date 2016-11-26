@@ -12,6 +12,7 @@ class " . $c . " extends CI_Controller
         parent::__construct();
         \$this->load->model('$m');
         \$this->load->library('form_validation');
+        \$this->load->library('datatables');
     }";
 
 if ($jenis_tabel == 'reguler_table') {
@@ -51,13 +52,12 @@ $string .= "\n\n    public function index()
     
 $string .="\n\n    public function index()
     {
-        \$$c_url = \$this->" . $m . "->get_all();
-
-        \$data = array(
-            '" . $c_url . "_data' => \$$c_url
-        );
-
-        \$this->load->view('$c_url/$v_list', \$data);
+        \$this->load->view('$c_url/$v_list');
+    } 
+    
+    public function json() {
+        header('Content-Type: application/json');
+        echo \$this->" . $m . "->json();
     }";
 
 }
