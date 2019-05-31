@@ -43,6 +43,46 @@ class Barang extends CI_Controller
         $this->template_front->display('barang/barang_list', $data);
     }
 
+<<<<<<< HEAD
+=======
+    public function home()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'barang/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'barang/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'barang/index.html';
+            $config['first_url'] = base_url() . 'barang/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        if($this->session->userdata('role')=="anggota"){
+            $config['total_rows'] = $this->Barang_model->total_rows($q,$level);
+            $barang = $this->Barang_model->get_limit_data($config['per_page'], $start, $q,$level);   
+        } else {
+            $config['total_rows'] = $this->Barang_model->total_rows($q);
+            $barang = $this->Barang_model->get_limit_data($config['per_page'], $start, $q);
+        }
+        
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'barang_data' => $barang,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $this->template_front->display('barang/home', $data);
+    }    
+
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     public function read($id) 
     {
         $row = $this->Barang_model->get_by_id($id);
@@ -164,6 +204,19 @@ class Barang extends CI_Controller
         }
     }
 
+<<<<<<< HEAD
+=======
+    public function add_cart($id) 
+    {
+
+        if($this->session->userdata('login_id')=='' || $this->session->userdata('login_id')==NULL) {
+            redirect(site_url('auth')); 
+        } else {
+            echo $id;
+        }
+    }
+
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     public function _rules() 
     {
 	$this->form_validation->set_rules('nama_item', 'nama item', 'trim|required');

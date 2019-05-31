@@ -40,7 +40,11 @@ class Pengguna extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+<<<<<<< HEAD
         $this->load->view('pengguna/pengguna_list', $data);
+=======
+        $this->template_front->display('pengguna/pengguna_list', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     }
 
     public function read($id) 
@@ -54,7 +58,11 @@ class Pengguna extends CI_Controller
 		'tanggal_lahir' => $row->tanggal_lahir,
 		'no_telp' => $row->no_telp,
 	    );
+<<<<<<< HEAD
             $this->load->view('pengguna/pengguna_read', $data);
+=======
+            $this->template_front->display('pengguna/pengguna_read', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pengguna'));
@@ -72,7 +80,11 @@ class Pengguna extends CI_Controller
 	    'tanggal_lahir' => set_value('tanggal_lahir'),
 	    'no_telp' => set_value('no_telp'),
 	);
+<<<<<<< HEAD
         $this->load->view('pengguna/pengguna_form', $data);
+=======
+        $this->template_front->display('pengguna/pengguna_form', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     }
     
     public function create_action() 
@@ -89,9 +101,15 @@ class Pengguna extends CI_Controller
 		'tanggal_lahir' => $this->input->post('tanggal_lahir',TRUE),
 		'no_telp' => $this->input->post('no_telp',TRUE),
 	    );
+<<<<<<< HEAD
             var_dump($this->input->post('role',TRUE));
             die();  
             $this->Pengguna_model->insert($data);
+=======
+            // var_dump($this->input->post('role',TRUE));
+            // die();  
+            // $this->Pengguna_model->insert($data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
             // if($this->input->post('role',TRUE)='admin') {
             //     $data2 = array(
             //         'no_ktp' => $this->input->post('no_ktp',TRUE),
@@ -149,7 +167,11 @@ class Pengguna extends CI_Controller
 		'tanggal_lahir' => set_value('tanggal_lahir', $row->tanggal_lahir),
 		'no_telp' => set_value('no_telp', $row->no_telp),
 	    );
+<<<<<<< HEAD
             $this->load->view('pengguna/pengguna_form', $data);
+=======
+            $this->template_front->display('pengguna/pengguna_form', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pengguna'));

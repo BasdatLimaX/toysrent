@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
     <head>
@@ -11,6 +12,25 @@
     </head>
     <body>
         <h2 style="margin-top:0px">Level_keanggotaan List</h2>
+=======
+<!-- Page Banner Section Start -->
+    <div class="page-banner-section section" style="background-image: url(../assets/images/Hero/heroku-2.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="page-banner-content col">
+                    <h1>Daftar Barang</h1>
+                    <ul class="page-breadcrumb">
+                        <li><a href="#">Barang</a></li>
+                        <li><a href="#">Daftar Barang</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div><!-- Page Banner Section End -->
+<div class="blog-section section mt-80 mt-lg-60 mt-md-60 mt-sm-60 mt-xs-40 mb-80 mb-lg-60 mb-md-60 mb-sm-60 mb-xs-40">
+        <div class="container">
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('level_keanggotaan/create'),'Create', 'class="btn btn-primary"'); ?>
@@ -44,6 +64,10 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
+<<<<<<< HEAD
+=======
+                <th>Nama Level</th>
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 		<th>Minimum Poin</th>
 		<th>Deskripsi</th>
 		<th>Action</th>
@@ -53,7 +77,12 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
+<<<<<<< HEAD
 			<td><?php echo $level_keanggotaan->minimum_poin ?></td>
+=======
+			<td><?php echo $level_keanggotaan->nama_level ?></td>
+            <td><?php echo $level_keanggotaan->minimum_poin ?></td>
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 			<td><?php echo $level_keanggotaan->deskripsi ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
@@ -76,6 +105,10 @@
             <div class="col-md-6 text-right">
                 <?php echo $pagination ?>
             </div>
+<<<<<<< HEAD
         </div>
     </body>
 </html>
+=======
+        </div>
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7

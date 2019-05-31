@@ -46,6 +46,10 @@ class Auth extends CI_Controller {
                         'login_id' => uniqid(rand()),
                         'nama' => $cek_login->nama_lengkap,
                         'email' => $cek_login->email,
+<<<<<<< HEAD
+=======
+                        'no_ktp' => $cek_login->no_ktp,
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
                         'role' => "admin"
                     );
                 } else if ($cek_anggota->num_rows()>0) {
@@ -54,6 +58,10 @@ class Auth extends CI_Controller {
                         'nama' => $cek_login->nama_lengkap,
                         'email' => $cek_login->email,
                         'level' => $cek_anggota->row()->level,
+<<<<<<< HEAD
+=======
+                        'no_ktp' => $cek_login->no_ktp,
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
                         'role' => "anggota"
                     );
                 }

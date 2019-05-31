@@ -9,8 +9,11 @@ class Item extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Item_model');
+<<<<<<< HEAD
         $this->load->model(array('Kategori_model'=>'Kategori'));
         $this->load->model(array('Kategori_item_model'=>'KategoriItem'));
+=======
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         $this->load->library('form_validation');
     }
 
@@ -98,6 +101,7 @@ class Item extends CI_Controller
 
     public function create() 
     {
+<<<<<<< HEAD
         $kategori = $this->Kategori->get_all();
         $data = array(
             'button' => 'Create',
@@ -109,12 +113,25 @@ class Item extends CI_Controller
             'bahan' => set_value('bahan'),
             'kategori' => $kategori,
 	    );
+=======
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('item/create_action'),
+	    'nama' => set_value('nama'),
+	    'deskripsi' => set_value('deskripsi'),
+	    'usia_dari' => set_value('usia_dari'),
+	    'usia_sampai' => set_value('usia_sampai'),
+	    'bahan' => set_value('bahan'),
+        'kategori' => set_value('kategori'),
+	);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         $this->template_front->display('item/item_form', $data);
     }
     
     public function create_action() 
     {
         $this->_rules();
+<<<<<<< HEAD
         $kategori = $this->input->post("kategori");
         $inputKategoriItem = array();
         foreach ($kategori as $key =>$value) {
@@ -122,10 +139,14 @@ class Item extends CI_Controller
             $inputKategoriItem[$key]["nama_kategori"] = $value;
         }
        
+=======
+
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
             $data = array(
+<<<<<<< HEAD
                 'nama' => $this->input->post('nama',TRUE),
                 'deskripsi' => $this->input->post('deskripsi',TRUE),
                 'usia_dari' => $this->input->post('usia_dari',TRUE),
@@ -135,6 +156,16 @@ class Item extends CI_Controller
             
             $this->Item_model->insert($data);
             $this->KategoriItem->insert_batch($inputKategoriItem); /* batch insert */
+=======
+		'nama' => $this->input->post('nama',TRUE),
+        'deskripsi' => $this->input->post('deskripsi',TRUE),
+		'usia_dari' => $this->input->post('usia_dari',TRUE),
+		'usia_sampai' => $this->input->post('usia_sampai',TRUE),
+		'bahan' => $this->input->post('bahan',TRUE),
+	    );
+
+            $this->Item_model->insert($data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('item'));
         }
@@ -143,7 +174,10 @@ class Item extends CI_Controller
     public function update($id) 
     {
         $row = $this->Item_model->get_by_id($id);
+<<<<<<< HEAD
         $kategori = $this->Kategori->get_all();
+=======
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 
         if ($row) {
             $data = array(
@@ -153,8 +187,12 @@ class Item extends CI_Controller
 		'deskripsi' => set_value('deskripsi', $row->deskripsi),
 		'usia_dari' => set_value('usia_dari', $row->usia_dari),
 		'usia_sampai' => set_value('usia_sampai', $row->usia_sampai),
+<<<<<<< HEAD
         'bahan' => set_value('bahan', $row->bahan),
         'kategori' => $kategori,
+=======
+		'bahan' => set_value('bahan', $row->bahan),
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 	    );
             $this->template_front->display('item/item_form', $data);
         } else {

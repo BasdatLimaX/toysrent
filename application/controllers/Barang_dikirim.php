@@ -27,8 +27,19 @@ class Barang_dikirim extends CI_Controller
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
+<<<<<<< HEAD
         $config['total_rows'] = $this->Barang_dikirim_model->total_rows($q);
         $barang_dikirim = $this->Barang_dikirim_model->get_limit_data($config['per_page'], $start, $q);
+=======
+        if($this->session->userdata('role')=="anggota") {
+            $config['total_rows'] = $this->Barang_dikirim_model->total_rows($q,$this->session->userdata('no_ktp'));
+            $barang_dikirim = $this->Barang_dikirim_model->get_limit_data($config['per_page'], $start, $q,$this->session->userdata('no_ktp'));
+        } else {
+            $config['total_rows'] = $this->Barang_dikirim_model->total_rows($q);
+            $barang_dikirim = $this->Barang_dikirim_model->get_limit_data($config['per_page'], $start, $q);
+        }
+        
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -40,7 +51,11 @@ class Barang_dikirim extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+<<<<<<< HEAD
         $this->load->view('barang_dikirim/barang_dikirim_list', $data);
+=======
+        $this->template_front->display('barang_dikirim/barang_dikirim_list', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     }
 
     public function read($id) 
@@ -54,7 +69,11 @@ class Barang_dikirim extends CI_Controller
 		'review' => $row->review,
 		'no_urut' => $row->no_urut,
 	    );
+<<<<<<< HEAD
             $this->load->view('barang_dikirim/barang_dikirim_read', $data);
+=======
+            $this->template_front->display('barang_dikirim/barang_dikirim_read', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('barang_dikirim'));
@@ -72,7 +91,11 @@ class Barang_dikirim extends CI_Controller
 	    'review' => set_value('review'),
 	    'no_urut' => set_value('no_urut'),
 	);
+<<<<<<< HEAD
         $this->load->view('barang_dikirim/barang_dikirim_form', $data);
+=======
+        $this->template_front->display('barang_dikirim/barang_dikirim_form', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     }
     
     public function create_action() 
@@ -108,7 +131,11 @@ class Barang_dikirim extends CI_Controller
 		'review' => set_value('review', $row->review),
 		'no_urut' => set_value('no_urut', $row->no_urut),
 	    );
+<<<<<<< HEAD
             $this->load->view('barang_dikirim/barang_dikirim_form', $data);
+=======
+            $this->template_front->display('barang_dikirim/barang_dikirim_form', $data);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('barang_dikirim'));

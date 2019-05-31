@@ -77,8 +77,13 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
+<<<<<<< HEAD
 	'password' => '123456',
 	'database' => 'postgres',
+=======
+	'password' => 'nura',
+	'database' => 'nurafitri',
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 	'schema' => 'db2018082',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',

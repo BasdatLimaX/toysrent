@@ -34,7 +34,11 @@ class Pengguna_model extends CI_Model
         $this->db->like('no_ktp', $q);
 	$this->db->or_like('nama_lengkap', $q);
 	$this->db->or_like('email', $q);
+<<<<<<< HEAD
 	$this->db->or_like('tanggal_lahir', $q);
+=======
+	//$this->db->or_like('tanggal_lahir', $q);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 	$this->db->or_like('no_telp', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -46,7 +50,11 @@ class Pengguna_model extends CI_Model
         $this->db->like('no_ktp', $q);
 	$this->db->or_like('nama_lengkap', $q);
 	$this->db->or_like('email', $q);
+<<<<<<< HEAD
 	$this->db->or_like('tanggal_lahir', $q);
+=======
+	//$this->db->or_like('tanggal_lahir', $q);
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
 	$this->db->or_like('no_telp', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

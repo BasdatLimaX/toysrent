@@ -41,6 +41,7 @@
                         <label for="int">Usia Sampai <?php echo form_error('usia_sampai') ?></label>
                         <input type="text" class="form-control" name="usia_sampai" id="usia_sampai" placeholder="Usia Sampai" value="<?php echo $usia_sampai; ?>" />
                     </div>
+<<<<<<< HEAD
                     
                     <div class="form-group">
                         <label for="int">Kategori <?php echo form_error('kategori') ?></label>
@@ -51,6 +52,11 @@
                               }
                             ?>
                         </select>
+=======
+                    <div class="form-group">
+                        <label for="int">Kategori <?php echo form_error('kategori') ?></label>
+                        <input type="text" class="form-control" name="kategori" id="kategori" placeholder="kategori" value="<?php echo $kategori; ?>" />
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
                     </div>
                 </div>
             </div>
@@ -61,6 +67,7 @@
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('item') ?>" class="btn btn-default">Cancel</a>
 	</form>
+<<<<<<< HEAD
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
@@ -75,5 +82,7 @@
         });
     })
     </script>
+=======
+>>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
     </body>
 </html>
