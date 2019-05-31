@@ -47,14 +47,6 @@
                         <div class="col mt-10 mb-10">
                             <!-- Header Shop Links Start -->
                             <div class="header-top-right">
-<<<<<<< HEAD
-
-                                <p><a href="#">My Account</a></p>
-                                <p><?php if($this->session->userdata('login_id')=='' || $this->session->userdata('login_id')==NULL) { ?>
-                                    <a href="#">Register</a><a href="<?php echo base_url('auth') ?>">Login</a>
-                                    <?php } else { ?>
-                                    <a href="#"><?php echo $this->session->userdata('nama') ?></a><a href="<?php echo base_url('auth/logout') ?>">Logout</a>
-=======
                                 <?php if($this->session->userdata('login_id')!='' || $this->session->userdata('login_id')!=NULL) { ?>
                                 <p><a href="<?php echo base_url('pengguna/read/'.$this->session->userdata('no_ktp')) ?>">My Account</a></p>
                             <?php }?>
@@ -62,7 +54,6 @@
                                     <a href="#">Register</a><a href="<?php echo base_url('auth') ?>">Login</a>
                                     <?php } else { ?>
                                     <a href="<?php echo base_url('pengguna/read/'.$this->session->userdata('no_ktp')) ?>"><?php echo $this->session->userdata('nama') ?></a><a href="<?php echo base_url('auth/logout') ?>">Logout</a>
->>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
                                     <?php } ?>
                                 </p>
 
@@ -160,11 +151,7 @@
                                         <li><a href="#">BARANG</a>
                                             <ul class="sub-menu">
                                                 <li><a href="<?php echo base_url('barang') ?>">DAFTAR BARANG</a>
-<<<<<<< HEAD
-                                                <li><a href="<?php echo base_url('') ?>">DAFTAR REVIEW BARANG</a></li>
-=======
                                                 <li><a href="<?php echo base_url('barang_dikirim/') ?>">DAFTAR REVIEW BARANG</a></li>
->>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
                                             </ul>
                                         </li>
                                         <?php if($this->session->userdata('role')=="anggota") { ?>
