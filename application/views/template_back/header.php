@@ -43,13 +43,10 @@
   <!-- Argon CSS -->
   <link rel="stylesheet" href="<?php echo base_url('assets/argonpanel/assets/css/argon.mine209.css?v=1.0.0') ?>" type="text/css">
   <!-- Google Tag Manager -->
-<<<<<<< HEAD
   <!-- select 2 -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
   
   
-=======
->>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

@@ -33,11 +33,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
     <!-- Modernizer JS -->
-<<<<<<< HEAD
 
      <!-- select 2 -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
   <script src="<?php echo base_url('assets/Jadusona/assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
-=======
-    <script src="<?php echo base_url('assets/Jadusona/assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
->>>>>>> a29ded696404e94d086f963b26bf51a5064336c7
